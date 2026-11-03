@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哥布林 3C 實驗室 | 耳機、DAC與聲學知識科普網</title>
+    <title>龍龍 3C 實驗室 | 耳機、DAC與聲學知識科普網</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -46,7 +46,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Light Theme Background Pattern directly matching screenshot translucent audio icons */
         .goblin-bg-pattern {
             background-color: #f5f4f8;
             background-image: radial-gradient(rgba(147, 51, 234, 0.03) 1px, transparent 0);
@@ -58,21 +57,19 @@
             background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
         }
 
-        /* Ambient faint background audio SVG icons */
         .ambient-icon {
             position: absolute;
             pointer-events: none;
-            opacity: 0.08;
+            opacity: 0.06;
             z-index: 0;
             color: #7c3aed;
         }
 
         .dark .ambient-icon {
-            opacity: 0.05;
+            opacity: 0.04;
             color: #a78bfa;
         }
 
-        /* Subtle smooth transition for cards */
         .card-hover {
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -85,47 +82,45 @@
             box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+        /* Custom highlight styling */
+        mark.goblin-hl {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: 600;
         }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
+        .dark mark.goblin-hl {
+            background-color: #064e3b;
+            color: #a7f3d0;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        .dark ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
     </style>
 </head>
 <body class="goblin-bg-pattern text-slate-800 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-goblin-500 selection:text-white relative overflow-x-hidden">
 
-    <!-- FLOATING PALE AMBIENT BACKGROUND ICONS (Subtle Earphone/Microphone/Cassette Vector Backdrop) -->
+    <!-- FLOATING BACKGROUND ICONS -->
     <div class="ambient-icon top-20 left-6 text-7xl transform -rotate-12"><i class="fa-solid fa-headphones"></i></div>
     <div class="ambient-icon top-96 right-10 text-8xl transform rotate-12"><i class="fa-solid fa-microphone-lines"></i></div>
-    <div class="ambient-icon top-[700px] left-12 text-8xl transform rotate-45"><i class="fa-solid fa-compact-disc"></i></div>
-    <div class="ambient-icon top-[1200px] right-8 text-9xl transform -rotate-12"><i class="fa-solid fa-sliders"></i></div>
-    <div class="ambient-icon top-[1800px] left-20 text-8xl transform rotate-12"><i class="fa-solid fa-gamepad"></i></div>
+    <div class="ambient-icon top-[800px] left-12 text-8xl transform rotate-45"><i class="fa-solid fa-compact-disc"></i></div>
 
     <!-- 1. STICKY HEADER NAVBAR -->
     <header class="sticky top-0 z-40 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             
-            <!-- LOGO: GOBLIN 3C 實驗室 -->
-            <a href="#" onclick="resetFilter(); return false;" class="flex items-center gap-2.5 group">
+            <!-- LOGO: 龍龍 3C 實驗室 -->
+            <a href="#" onclick="showHomeView(); return false;" class="flex items-center gap-2.5 group">
                 <div class="w-9 h-9 rounded-xl bg-goblin-500 text-white flex items-center justify-center font-black text-lg shadow-md shadow-goblin-500/20 group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-headset text-sm"></i>
                 </div>
                 <div class="flex items-baseline gap-1.5">
                     <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-goblin-600 transition-colors">
-                        GOBLIN
+                        LONGLONG
                     </span>
                     <span class="text-xs font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">
                         3C 實驗室
@@ -135,12 +130,11 @@
 
             <!-- NAV LINKS & SEARCH & DARK MODE -->
             <div class="flex items-center gap-4 sm:gap-6">
-                <!-- Navigation Items -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
-                    <a href="#hero" class="hover:text-goblin-600 dark:hover:text-goblin-500 transition-colors flex items-center gap-1.5">
+                    <a href="#" onclick="showHomeView(); return false;" class="hover:text-goblin-600 dark:hover:text-goblin-500 transition-colors flex items-center gap-1.5">
                         <i class="fa-regular fa-bookmark text-xs"></i> 實驗日誌
                     </a>
-                    <a href="#latest" class="hover:text-goblin-600 dark:hover:text-goblin-500 transition-colors flex items-center gap-1.5">
+                    <a href="#" onclick="filterByCategory('Knowledge'); return false;" class="hover:text-goblin-600 dark:hover:text-goblin-500 transition-colors flex items-center gap-1.5">
                         <i class="fa-solid fa-bolt text-xs text-amber-500"></i> 3C 知識庫
                     </a>
                     
@@ -149,39 +143,34 @@
                         <button class="hover:text-goblin-600 dark:hover:text-goblin-500 transition-colors flex items-center gap-1">
                             <i class="fa-solid fa-border-all text-xs"></i> 分類 <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 group-hover:rotate-180 transition-transform"></i>
                         </button>
-                        <!-- Dropdown Menu Box -->
-                        <div class="absolute right-0 top-full hidden group-hover:block w-48 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50 animate-fadeIn">
+                        <div class="absolute right-0 top-full hidden group-hover:block w-48 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 py-2 z-50">
                             <a href="#" onclick="filterByCategory('IEM'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-headphones text-purple-500 w-4"></i> 入耳式 (IEM)
                             </a>
                             <a href="#" onclick="filterByCategory('TWS'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-bolt text-amber-500 w-4"></i> 真無線 (TWS)
                             </a>
-                            <a href="#" onclick="filterByCategory('Over-ear'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-headphones-simple text-blue-500 w-4"></i> 耳罩式
-                            </a>
                             <a href="#" onclick="filterByCategory('DAC'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
                                 <i class="fa-solid fa-sliders text-emerald-500 w-4"></i> DAC 與播放器
                             </a>
-                            <a href="#" onclick="filterByCategory('Monitors'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
-                                <i class="fa-solid fa-volume-high text-rose-500 w-4"></i> 監聽喇叭
+                            <a href="#" onclick="filterByCategory('Studio'); return false;" class="px-4 py-2 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                                <i class="fa-solid fa-microphone-lines text-rose-500 w-4"></i> 錄音介面與設備
                             </a>
                         </div>
                     </div>
                 </nav>
 
-                <!-- Search Button / Input -->
+                <!-- Search Input -->
                 <div class="relative">
                     <button id="btnToggleSearch" class="p-2 text-slate-500 dark:text-slate-400 hover:text-goblin-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                         <i class="fa-solid fa-magnifying-glass text-base"></i>
                     </button>
-                    <!-- Expandable Search Box -->
                     <div id="searchBox" class="hidden absolute right-0 top-12 w-72 bg-white dark:bg-slate-800 rounded-2xl p-2 shadow-2xl border border-slate-200 dark:border-slate-700 z-50">
-                        <input type="text" id="searchInput" placeholder="搜尋耳機、DAC、聲學名詞..." class="w-full bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 text-xs font-medium rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-goblin-500">
+                        <input type="text" id="searchInput" placeholder="搜尋耳機、DAC、錄音介面..." class="w-full bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 text-xs font-medium rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-goblin-500">
                     </div>
                 </div>
 
-                <!-- Dark Mode Toggle Button -->
+                <!-- Theme Toggle Button -->
                 <button id="btnThemeToggle" class="p-2 text-slate-500 dark:text-slate-300 hover:text-amber-500 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="切換深色模式">
                     <i id="themeIcon" class="fa-regular fa-moon text-base"></i>
                 </button>
@@ -189,32 +178,26 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 relative z-10">
-
-        <!-- 2. HERO SECTION (Directly matching goblin3c.com screenshot) -->
-        <section id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
-            
-            <!-- Left Side Title & Subtitle -->
+    <!-- VIEW 1: HOMEPAGE CONTAINER -->
+    <div id="homeView" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 relative z-10 w-full">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
             <div class="lg:col-span-6 space-y-6">
-                <!-- Purple Tag Badge -->
                 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-950/70 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 text-xs font-bold">
                     <i class="fa-solid fa-tag text-purple-500"></i>
                     <span>實驗室激推！裝備不能亂選，拒絕盲狙</span>
                 </div>
 
-                <!-- Main Hero Headline -->
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                     每一件裝備，<br>
                     都經過<span class="text-goblin-500 underline decoration-goblin-500/30 decoration-wavy underline-offset-8">千錘百鍊</span>。
                 </h1>
 
-                <!-- Subtitle -->
-                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                    用哥布林般刁鑽的眼光，深度評測耳機、音響與錄音設備，幫你找出最值得買的那一件。
+                <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                    用龍龍般刁鑽的眼光，深度評測耳機、錄音介面與聲學設備，幫你找出最值得買的那一件。
                 </p>
 
-                <!-- Green CTA Button -->
                 <div>
                     <a href="#latest" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-goblin-500 hover:bg-goblin-600 text-white font-bold text-sm shadow-lg shadow-goblin-500/25 transition-all hover:scale-[1.02] active:scale-95">
                         看最新評測 <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -222,368 +205,497 @@
                 </div>
             </div>
 
-            <!-- Right Side Featured Card (Matching Screenshot hero card) -->
+            <!-- Featured Card -->
             <div class="lg:col-span-6">
-                <div onclick="openArticleModal('art-1')" class="card-hover bg-white dark:bg-slate-800 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm cursor-pointer group">
+                <div onclick="openArticleDetail('art-1')" class="card-hover bg-white dark:bg-slate-800 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm cursor-pointer group">
                     <div class="relative h-64 sm:h-72 bg-slate-900 overflow-hidden">
-                        <!-- Featured IEM Image -->
                         <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=1200&auto=format&fit=crop" 
-                             alt="Kefine Delci IEM 耳機評測" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                             alt="低音 IEM 推薦" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                     </div>
                     
                     <div class="p-6 space-y-3">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-0.5 rounded-full bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText text-[11px] font-bold">
-                                入耳式 (IEM)
-                            </span>
-                        </div>
-
+                        <span class="px-2.5 py-0.5 rounded-full bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText text-[11px] font-bold">
+                            入耳式 (IEM)
+                        </span>
                         <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-goblin-500 transition-colors leading-snug">
-                            2026 低音 IEM 推薦：千元到萬元內 12 款重低音耳機，依預算挑選
+                            低音 IEM 怎麼選？先看彈性與瞬態，再看量感（12 款熱門評測）
                         </h2>
-
-                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                            低音 IEM 依預算挑：2000 內、2000～6000、8000～萬元共 12 款，含哥布林自己買的 Kefine Delci，以低頻彈性與瞬態為主的挑選標準。
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                            低音 IEM 依預算挑選：2000 內、2000～6000、8000～萬元共 12 款，含 Kefine Delci、Kiwi Ears Cadenza 與音場對比指南...
                         </p>
-
-                        <div class="pt-2 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 font-medium border-t border-slate-100 dark:border-slate-700/60">
+                        <div class="pt-2 flex items-center justify-between text-xs text-slate-400 font-medium border-t border-slate-100 dark:border-slate-700/60">
                             <span><i class="fa-regular fa-calendar mr-1.5"></i>2026/10/25</span>
                             <span class="text-goblin-600 dark:text-goblin-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                前往圍觀 <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                閱讀完整評測 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
 
-
-        <!-- 3. "最新發布" SECTION (Grid matching 3-column screenshots) -->
-        <section id="latest" class="space-y-6 pt-6">
+        <!-- MAIN GRID SECTION WITH SIDEBAR -->
+        <section id="latest" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
             
-            <!-- Section Header -->
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-6 bg-goblin-500 rounded-full inline-block"></span>
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-                        最新發布
-                    </h2>
+            <!-- Left Main Grid (8 Cols) -->
+            <div class="lg:col-span-8 space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-6 bg-goblin-500 rounded-full inline-block"></span>
+                        <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                            最新發布與評測
+                        </h2>
+                    </div>
+                    <button onclick="resetFilter()" class="text-xs font-bold text-goblin-600 dark:text-goblin-400 hover:underline">
+                        重置篩選
+                    </button>
                 </div>
-                <button onclick="resetFilter()" class="text-xs font-bold text-goblin-600 dark:text-goblin-400 hover:underline flex items-center gap-1">
-                    查看全部 <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
+
+                <!-- Active Filter Banner -->
+                <div id="filterStatusBanner" class="hidden p-3 bg-emerald-50 dark:bg-slate-800 border border-emerald-200 dark:border-slate-700 rounded-2xl flex items-center justify-between text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                    <span>目前篩選標籤：<span id="activeCategoryText" class="font-bold underline">全部</span></span>
+                    <button onclick="resetFilter()" class="text-slate-500 hover:text-slate-800 dark:hover:text-white underline">清除</button>
+                </div>
+
+                <!-- Articles Grid (2-Column Desktop) -->
+                <div id="articlesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Injected by JS -->
+                </div>
             </div>
 
-            <!-- Filter Status Banner (Active when filtering) -->
-            <div id="filterStatusBanner" class="hidden p-3 bg-emerald-50 dark:bg-slate-800 border border-emerald-200 dark:border-slate-700 rounded-2xl flex items-center justify-between text-xs font-semibold text-emerald-800 dark:text-emerald-300">
-                <span>目前篩選條件：<span id="activeCategoryText" class="font-bold underline">全部</span></span>
-                <button onclick="resetFilter()" class="text-slate-500 hover:text-slate-800 dark:hover:text-white underline">清除篩選</button>
-            </div>
-
-            <!-- ARTICLES GRID (3 Columns Desktop, 1 Column Mobile) -->
-            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- Dynamically Injected by JS -->
-            </div>
-
-        </section>
-
-
-        <!-- 4. CATEGORY NAVIGATOR SECTION ("你想找哪一類裝備？") -->
-        <section class="space-y-6 pt-10">
-            <div class="text-left">
-                <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
-                    你想找哪一類裝備？
-                </h2>
-                <p class="text-xs text-slate-500 dark:text-slate-400">點擊分類按鈕即可即時篩選相關文章</p>
-            </div>
-
-            <!-- 6 Interactive Category Cards matching screenshot line icons -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <!-- Right Sidebar (4 Cols) - Matching Goblin3c.com Sidebar -->
+            <div class="lg:col-span-4 space-y-8 sticky top-24">
                 
-                <!-- Category 1: IEM -->
-                <button onclick="filterByCategory('IEM')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-headphones"></i>
+                <!-- Popular Posts Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-700/60 pb-3">
+                        <span class="w-1.5 h-4 bg-rose-500 rounded-full inline-block"></span>
+                        <h3 class="text-base font-black text-slate-900 dark:text-white tracking-tight">
+                            熱門文章推薦
+                        </h3>
                     </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        入耳式 (IEM)
-                    </span>
-                </button>
 
-                <!-- Category 2: TWS -->
-                <button onclick="filterByCategory('TWS')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-bolt"></i>
+                    <div class="space-y-4" id="popularPostsContainer">
+                        <!-- Popular items injected by JS -->
                     </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        真無線 (TWS)
-                    </span>
-                </button>
+                </div>
 
-                <!-- Category 3: Over-ear -->
-                <button onclick="filterByCategory('Over-ear')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-headphones-simple"></i>
+                <!-- Popular Tags Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-700/60 pb-3">
+                        <span class="w-1.5 h-4 bg-goblin-500 rounded-full inline-block"></span>
+                        <h3 class="text-base font-black text-slate-900 dark:text-white tracking-tight">
+                            熱門探索標籤
+                        </h3>
                     </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        耳罩式
-                    </span>
-                </button>
 
-                <!-- Category 4: DAC -->
-                <button onclick="filterByCategory('DAC')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-sliders"></i>
+                    <div class="flex flex-wrap gap-2" id="tagsContainer">
+                        <button onclick="filterByTag('IEM')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-goblin-500 hover:text-white text-xs font-semibold text-slate-600 dark:text-slate-300 transition-colors">
+                            #入耳式 (IEM)
+                        </button>
+                        <button onclick="filterByTag('TWS')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-goblin-500 hover:text-white text-xs font-semibold text-slate-600 dark:text-slate-300 transition-colors">
+                            #真無線 (TWS)
+                        </button>
+                        <button onclick="filterByTag('DAC')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-goblin-500 hover:text-white text-xs font-semibold text-slate-600 dark:text-slate-300 transition-colors">
+                            #DAC與播放器
+                        </button>
+                        <button onclick="filterByTag('Studio')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-goblin-500 hover:text-white text-xs font-semibold text-slate-600 dark:text-slate-300 transition-colors">
+                            #錄音設備
+                        </button>
+                        <button onclick="filterByTag('Knowledge')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-goblin-500 hover:text-white text-xs font-semibold text-slate-600 dark:text-slate-300 transition-colors">
+                            #聲學知識
+                        </button>
                     </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        DAC 與播放器
-                    </span>
-                </button>
-
-                <!-- Category 5: Studio Monitors -->
-                <button onclick="filterByCategory('Monitors')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-volume-high"></i>
-                    </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        監聽喇叭
-                    </span>
-                </button>
-
-                <!-- Category 6: Mouse -->
-                <button onclick="filterByCategory('Mouse')" class="card-hover bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 flex flex-col items-center justify-center text-center gap-3 group">
-                    <div class="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-700 dark:text-slate-200 flex items-center justify-center text-xl group-hover:text-goblin-500 group-hover:bg-goblin-50 dark:group-hover:bg-slate-700 transition-colors">
-                        <i class="fa-solid fa-[#f00]"></i>
-                        <i class="fa-solid fa-computer-mouse"></i>
-                    </div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors">
-                        滑鼠
-                    </span>
-                </button>
+                </div>
 
             </div>
+
         </section>
 
-    </main>
+    </div>
 
-    <!-- 5. FOOTER (Matching goblin3c.com bottom layout) -->
+
+    <!-- VIEW 2: FULL ARTICLE DETAIL PAGE CONTAINER (3-COLUMN LAYOUT) -->
+    <div id="articleDetailView" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 w-full">
+        
+        <!-- Back Button Top Navigation -->
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <button onclick="showHomeView()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-goblin-600 transition-colors shadow-sm">
+                <i class="fa-solid fa-arrow-left"></i> 返回文章列表
+            </button>
+            <span id="detailArticleMeta" class="text-xs text-slate-400 font-medium">發布於 2026/10/25</span>
+        </div>
+
+        <!-- 3-Column Layout Matching Screenshots -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT TOC SIDEBAR (3 Cols) -->
+            <div class="lg:col-span-3 sticky top-24 hidden lg:block space-y-4">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-3">
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-700 pb-2">
+                        <i class="fa-solid fa-list-ul text-goblin-500"></i>
+                        <span>內容目錄</span>
+                    </div>
+                    <nav id="tocContainer" class="space-y-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                        <!-- TOC Items dynamically injected -->
+                    </nav>
+                </div>
+            </div>
+
+            <!-- CENTER MAIN CONTENT (6 Cols) -->
+            <div class="lg:col-span-6 bg-white dark:bg-slate-800 p-6 sm:p-10 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-6">
+                
+                <!-- Category Tag & Header Title -->
+                <div class="space-y-3">
+                    <span id="detailCategoryBadge" class="px-2.5 py-0.5 rounded-full bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText text-xs font-bold">
+                        Tag
+                    </span>
+                    <h1 id="detailTitle" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight">
+                        Article Title
+                    </h1>
+                    <p id="detailSummary" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed border-l-2 border-goblin-500 pl-3">
+                        Article summary...
+                    </p>
+                </div>
+
+                <!-- Featured Header Image -->
+                <div class="h-64 sm:h-80 rounded-2xl overflow-hidden bg-slate-900">
+                    <img id="detailCoverImage" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Full Body Article HTML Container -->
+                <div id="detailArticleContent" class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-200 text-sm sm:text-base leading-relaxed space-y-6">
+                    <!-- Dynamic Body Content -->
+                </div>
+
+            </div>
+
+            <!-- RIGHT RELATED SIDEBAR (3 Cols) -->
+            <div class="lg:col-span-3 sticky top-24 space-y-6">
+                
+                <!-- Related Articles Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 dark:border-slate-700 pb-3">
+                        <span class="w-1.5 h-4 bg-goblin-500 rounded-full inline-block"></span>
+                        <h3 class="text-sm font-black text-slate-900 dark:text-white">延伸閱讀</h3>
+                    </div>
+                    <div id="detailRelatedContainer" class="space-y-3">
+                        <!-- Related posts injected -->
+                    </div>
+                </div>
+
+                <!-- Category Selector Widget -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm space-y-3">
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-700 pb-2">
+                        <i class="fa-regular fa-folder-open text-goblin-500"></i>
+                        <span>文章分類</span>
+                    </div>
+                    <div class="space-y-1.5 text-xs font-semibold">
+                        <button onclick="filterByCategory('IEM'); showHomeView();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-between">
+                            <span>入耳式 (IEM)</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <button onclick="filterByCategory('TWS'); showHomeView();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-between">
+                            <span>真無線 (TWS)</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <button onclick="filterByCategory('DAC'); showHomeView();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-between">
+                            <span>DAC 與播放器</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <button onclick="filterByCategory('Studio'); showHomeView();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-between">
+                            <span>錄音介面與設備</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
     <footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-8 pb-12 mt-16 relative z-10 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-            
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500 dark:text-slate-400">
                 <div class="flex items-center gap-2 text-goblin-600 dark:text-goblin-400 font-bold">
                     <i class="fa-solid fa-circle-info"></i>
-                    <a href="#" onclick="alert('哥布林 3C 實驗室專注於耳機評測、DAC解碼與聲學知識科普。'); return false;" class="hover:underline">關於我們</a>
+                    <a href="#" onclick="alert('龍龍 3C 實驗室專注於耳機評測、DAC解碼與聲學知識科普。'); return false;" class="hover:underline">關於我們</a>
                 </div>
 
                 <div class="flex items-center gap-1">
                     <i class="fa-regular fa-envelope mr-1"></i>
                     <span>商家合作與聯絡：</span>
-                    <a href="mailto:contact@goblin3c.com" class="text-goblin-600 dark:text-goblin-400 font-bold hover:underline">contact@goblin3c.com</a>
+                    <a href="mailto:nek951229@gmail.com" class="text-goblin-600 dark:text-goblin-400 font-bold hover:underline">nek951229@gmail.com</a>
                 </div>
             </div>
 
             <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-400 dark:text-slate-500">
-                <p>© 2026 哥布林 3C 實驗室. All rights reserved.</p>
-                <p>本站含聯盟行銷連結，透過連結購買本站可能獲得分潤，不影響你的購買價格。<a href="#" onclick="alert('本站參加聯盟行銷計畫，所有推薦商品皆經過實驗室實測，無受贊助偏頗。'); return false;" class="underline hover:text-slate-600">揭露說明</a></p>
+                <p>© 2026 龍龍 3C 實驗室. All rights reserved.</p>
+                <p>本站含聯盟行銷連結，透過連結購買本站可能獲得分潤，不影響你的購買價格。</p>
             </div>
-
         </div>
     </footer>
 
 
-    <!-- 6. INTERACTIVE ARTICLE READER MODAL -->
-    <div id="articleModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div id="articleModalContainer" class="bg-white dark:bg-slate-800 w-full max-w-3xl max-h-[90vh] rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
-            
-            <!-- Modal Header -->
-            <div class="p-6 border-b border-slate-100 dark:border-slate-700/80 flex items-center justify-between flex-shrink-0 bg-slate-50/50 dark:bg-slate-800/80">
-                <div class="flex items-center gap-2">
-                    <span id="modalCategoryTag" class="px-2.5 py-0.5 rounded-full bg-tagPurple-bg text-tagPurple-text text-xs font-bold">
-                        Tag
-                    </span>
-                    <span id="modalDate" class="text-xs font-medium text-slate-400">Date</span>
-                </div>
-
-                <button id="btnCloseModal" class="w-8 h-8 rounded-full bg-slate-200/60 dark:bg-slate-700 text-slate-600 dark:text-slate-200 flex items-center justify-center hover:bg-rose-100 hover:text-rose-600 transition-colors">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
-            </div>
-
-            <!-- Modal Content Body -->
-            <div id="modalArticleBody" class="p-6 sm:p-8 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-200 leading-relaxed text-sm sm:text-base">
-                <!-- Dynamically Filled -->
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="p-4 border-t border-slate-100 dark:border-slate-700/80 bg-slate-50/80 dark:bg-slate-800 flex items-center justify-between text-xs text-slate-500">
-                <span>哥布林 3C 實驗室 · 深度科普</span>
-                <button onclick="copyCurrentUrl()" class="px-3 py-1.5 rounded-lg bg-goblin-500 text-white font-bold hover:bg-goblin-600 transition-colors flex items-center gap-1.5">
-                    <i class="fa-regular fa-copy"></i> 複製文章連結
-                </button>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT LOGIC & DATABASE -->
     <script>
-        // ARTICLE DATABASE MATCHING THE SCREENSHOTS EXACTLY
         const articles = [
             {
                 id: 'art-1',
                 categoryKey: 'IEM',
                 categoryLabel: '入耳式 (IEM)',
                 tagClass: 'bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText',
-                title: '2026 低音 IEM 推薦：千元到萬元內 12 款重低音耳機，依預算挑選',
-                excerpt: '低音 IEM 依預算挑：2000 內、2000～6000、8000～萬元共 12 款，含哥布林自己買的 Kefine Delci，以低頻彈性與瞬態為主的挑選標準。',
+                title: '低音 IEM 怎麼選？先看彈性與瞬態，再看量感',
+                excerpt: '趕時間的話直接看結論：2000元內選 Kefine Delci 或 Kiwi Ears Cadenza；2000~6000元選 iKKO OH10S；8000~萬元選 HiBy x FAudio Project Ace...',
                 date: '2026/10/25',
-                actionText: '前往圍觀 →',
-                actionClass: 'text-goblin-600 dark:text-goblin-400',
                 image: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop',
+                popularRank: 1,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">為什麼選重低音耳機不能只看「量感」？</h2>
-                    <p class="mb-4">許多初學者挑選低音耳機時，常誤以為「低頻越大聲越震撼」，結果買到轟頭、遮蓋中高頻人聲的渾濁耳機。哥布林實驗室認為，優秀的低音應該兼具<b>極低頻下潛 (Sub-Bass)</b>、<b>低頻彈性 (Punch)</b> 與<b>瞬態反應 (Transient)</b>。</p>
-
-                    <div class="my-6 p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-amber-900 dark:text-amber-200">
-                        <h4 class="font-bold text-sm mb-1"><i class="fa-solid fa-lightbulb mr-1.5"></i> 哥布林選用耳機實測清單（部分）</h4>
-                        <ul class="list-disc list-inside text-xs space-y-1">
-                            <li><b>預算 2,000 元內：</b> Kefine Delci（哥布林自購款，動圈質感優異、下潛深邃）</li>
-                            <li><b>預算 2,000 ~ 6,000 元：</b> Tangzu Zetian Wu / Letshuoer S12 Pro（平板單元瞬態極佳）</li>
-                            <li><b>預算 8,000 ~ 萬元內：</b> Sennheiser IE 300 / Thieaudio Hype 2（雙動圈加持，包覆感震撼）</li>
-                        </ul>
+                    <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 text-xs sm:text-sm space-y-2 mb-6">
+                        <p class="font-bold"><mark class="goblin-hl">趕時間的話直接看結論：</mark></p>
+                        <p><b>2000 元內選：</b> Kefine Delci（低頻彈性與分離度優異）或 Kiwi Ears Cadenza（好推、適合入門）</p>
+                        <p><b>2000 ~ 6000 元選：</b> iKKO OH10S（龍龍最常用 IEM 之一）</p>
+                        <p><b>8000 ~ 萬元選：</b> 瞬間衝擊力選 HiBy x FAudio Project Ace；包覆感選 FiiO FH15。</p>
                     </div>
 
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">調音曲線解析：20Hz - 250Hz 的低頻黃金比例</h3>
-                    <p class="mb-4">極低頻 (20-60Hz) 決定電影爆破與電音底鼓的震動感，低頻 (60-250Hz) 則影響貝斯與鼓聲的厚實度。若 250Hz 抬升過多，會導致人聲混濁（Warm/Mudy）。挑選時應尋找極低頻有適度增益、而在 300Hz 乾淨下凹的調音風格。</p>
+                    <p class="mb-4">標榜重低音的 IEM 很多，但低頻「量大」和「好聽」是兩件事。我挑低音的順序是：先看<b>彈性與瞬態</b>，其次看<b>下潛夠不夠</b>。量感當然要有，但太轟頭我也不喜歡。</p>
+
+                    <h3 id="sec-1" class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-goblin-500"></i> 測試基準點
+                    </h3>
+                    <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 mb-6 text-slate-600 dark:text-slate-300">
+                        <li><b>龍龍聽驗：</b> iKKO OH10S 是龍龍目前最常使用的幾支 IEM 之一；Kefine Delci 是龍龍自購耳機。</li>
+                        <li><b>其餘型號：</b> 依據原廠規格、第三方聲學測試與社群反饋彙整實測體驗，龍龍有聽過的款式會陸續補上親身感受。</li>
+                        <li><b>價格參考：</b> 參考售價為台灣通路價，請以商品連結內最新售價為準。</li>
+                    </ul>
+
+                    <h3 id="sec-2" class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-table text-goblin-500"></i> 12 款低音 IEM 快速對比表
+                    </h3>
+                    <div class="overflow-x-auto my-6 border border-slate-200 dark:border-slate-700 rounded-2xl">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-goblin-500 text-white font-bold">
+                                <tr>
+                                    <th class="p-3">預算</th>
+                                    <th class="p-3">型號</th>
+                                    <th class="p-3">參考售價</th>
+                                    <th class="p-3">單元配置</th>
+                                    <th class="p-3">低頻取向</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-700/60 font-medium">
+                                <tr class="bg-slate-50/50 dark:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-slate-500">2000 內</td>
+                                    <td class="p-3 font-bold text-goblin-600">Kefine Delci</td>
+                                    <td class="p-3">~NT$2,200</td>
+                                    <td class="p-3">10mm 鍍DLC動圈</td>
+                                    <td class="p-3">極低頻下潛深、彈性佳</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-500">2000 內</td>
+                                    <td class="p-3 font-bold">Kiwi Ears Cadenza</td>
+                                    <td class="p-3">~NT$1,090</td>
+                                    <td class="p-3">10mm 鍍鈹動圈</td>
+                                    <td class="p-3">暖聲、中低頻包覆感強</td>
+                                </tr>
+                                <tr class="bg-slate-50/50 dark:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-slate-500">2000~6000</td>
+                                    <td class="p-3 font-bold text-goblin-600">iKKO OH10S</td>
+                                    <td class="p-3">~NT$5,200</td>
+                                    <td class="p-3">1DD + 1BA (紫銅腔體)</td>
+                                    <td class="p-3">衝擊力極強、圈鐵層次分明</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-500">8000~萬元</td>
+                                    <td class="p-3 font-bold">FAudio Project Ace</td>
+                                    <td class="p-3">~NT$8,900</td>
+                                    <td class="p-3">15mm 鈹動圈</td>
+                                    <td class="p-3">瞬態 Punch 強烈、乾淨快速</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 id="sec-3" class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">低音 IEM 的四個選購重點</h3>
+                    <p class="mb-4">極低頻 (Sub-Bass) 帶來震動震撼感，而中低頻 (Mid-Bass) 帶來鼓點打擊感。選購時務必確保低頻不遮蓋 1kHz-3kHz 的人聲頻段，才能兼顧節奏感與清晰度。</p>
                 `
             },
             {
                 id: 'art-2',
-                categoryKey: 'DAC',
-                categoryLabel: 'DAC 與播放器',
-                tagClass: 'bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText',
-                title: '2026 小尾巴推薦：千元到 5000 元 12 款 DAC 小尾巴，依預算挑選',
-                excerpt: '小尾巴依預算挑：千元內、1000～3000、3000～5000 元共 12 款，含哥布林用過的 Apple 轉接器、JM20、FiiO KA13...',
-                date: '2026/10/20',
-                actionText: '前往圍觀 →',
-                actionClass: 'text-goblin-600 dark:text-goblin-400',
-                image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=800&auto=format&fit=crop',
+                categoryKey: 'Studio',
+                categoryLabel: '錄音設備',
+                tagClass: 'bg-tagOrange-bg text-tagOrange-text dark:bg-tagOrange-darkBg dark:text-tagOrange-darkText',
+                title: '2026 中階錄音介面推薦：2萬以下 5 款精選，前級推力決定宅錄上限',
+                excerpt: '精選 2 萬元內熱門錄音介面：Audient iD14 MKII, Focusrite Scarlett 4i4 Gen 4, MOTU M6, Universal Audio Volt 476, SSL 12...',
+                date: '2026/10/18',
+                image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+                popularRank: 2,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">手機取消 3.5mm 孔後，小尾巴 (DAC) 為什麼是必備神器？</h2>
-                    <p class="mb-4">手機內建的音訊解碼晶片往往為了省電與成本受限，輸出功率小且易受到電路雜訊干擾。使用獨立的 USB DAC 小尾巴，能提供更高的訊噪比 (SNR)、更低失真 (THD+N) 以及強勁的推力。</p>
+                    <p class="mb-4">在家庭錄音室與 Podcast 製作中，錄音介面的<b>話放（Mic Preamp）推力</b>與<b>耳擴輸出阻抗</b>直接決定了麥克風與監聽耳機的表現極限。</p>
 
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">推力與平穩度的平衡</h3>
-                    <p class="mb-4">選購小尾巴需注意：單端 (3.5mm) 還是平衡 (4.4mm)？高推力小尾巴（如 FiiO KA13 提供高達 550mW 輸出）能輕鬆駕馭高阻抗耳機，但也需注意手機耗電量。</p>
+                    <h3 id="sec-1" class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">5 款熱門介面比較</h3>
+                    <ul class="list-disc list-inside text-xs sm:text-sm space-y-2 mb-6">
+                        <li><b>Audient iD14 MKII：</b> 採用控制台級話放，動態範圍達 126dB，推高阻抗耳機表現極佳。</li>
+                        <li><b>Focusrite Scarlett 4i4 Gen 4：</b> 具備 Auto Gain 自動增益與 Clip Safe 防剪峰功能，適合新手。</li>
+                        <li><b>SSL 12：</b> 搭載 4K 模擬調音開關，帶來經典 SSL 唱片級高頻光澤感。</li>
+                    </ul>
                 `
             },
             {
                 id: 'art-3',
-                categoryKey: 'IEM',
-                categoryLabel: '入耳式 (IEM)',
+                categoryKey: 'TWS',
+                categoryLabel: '真無線 (TWS)',
                 tagClass: 'bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText',
-                title: '2026 女毒 IEM 推薦：2000 ～ 7000 元 15 款人聲神耳機，依預算挑選',
-                excerpt: '女毒 IEM 依預算挑：2000 內、2000～5000、5000～7000 元各 5 款，含哥布林親自聽過的靜海、Yume IV...',
-                date: '2026/10/16',
-                actionText: '前往圍觀 →',
-                actionClass: 'text-goblin-600 dark:text-goblin-400',
-                image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop',
+                title: '2026 旗艦 TWS 推薦：Sony WF-1000XM6 到 Denon PerL Pro 降噪音質比拼',
+                excerpt: '頂級真無線降噪耳機比拼：Sony WF-1000XM6, Apple AirPods Pro 2, Technics EAH-AZ80, Denon PerL Pro 完整實測...',
+                date: '2026/10/12',
+                image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=800&auto=format&fit=crop',
+                popularRank: 3,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">什麼是「女毒」？解析清亮人聲的聲學曲線</h2>
-                    <p class="mb-4">燒友常說的「女毒」，指的是高頻延伸細膩、中高頻 (2kHz - 5kHz) 突出且帶有甜美空氣感的調音。聽 ACG、日系女聲或美聲歌曲時，人聲彷彿貼在耳邊吟唱。</p>
+                    <p class="mb-4">2026 年旗艦 TWS 不再只拼降噪深度，更著重於<b>個人化耳道聲學量測</b>與<b>多點連線穩定度</b>。</p>
+                    <h3 id="sec-1" class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-3">降噪與聽感簡評</h3>
+                    <p class="mb-4">Denon PerL Pro 透過 Masimo AAT 自適應聽覺技術，能打造成極具包覆感的客製化調音；Sony XM6 則在低頻主動降噪上繼續保持領先地位。</p>
                 `
             },
             {
                 id: 'art-4',
-                categoryKey: 'Knowledge',
-                categoryLabel: '⚡ 知識庫',
-                tagClass: 'bg-tagOrange-bg text-tagOrange-text dark:bg-tagOrange-darkBg dark:text-tagOrange-darkText',
-                title: '怎樣的調音才能呈現「寬闊真實的音場」？解析空間感與定位感的聲學原理',
-                excerpt: '音場寬不寬，很多人以為只跟耳罩大小或開放式/封閉式有關。這篇 Wiki 拆解音場背後真正的聲學原理——雙耳頭相關傳輸函數 (HRTF) 與高頻相位...',
-                date: '2026/10/13',
-                actionText: '快速了解 →',
-                actionClass: 'text-orange-600 dark:text-orange-400 font-bold',
-                image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=800&auto=format&fit=crop',
+                categoryKey: 'DAC',
+                categoryLabel: 'DAC與播放器',
+                tagClass: 'bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText',
+                title: '2026 入門隨身播放器 DAP 推薦：3000~8000元精選指南',
+                excerpt: '擺脫手機幹擾與背景底噪！Shanling M0 Pura, HiBy R3 II, HiBy Digital M300 評測...',
+                date: '2026/10/08',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop',
+                popularRank: 4,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">聽覺的縱深與寬度：耳機如何塑造「虛擬空間」？</h2>
-                    <p class="mb-4">耳機發聲單元距離鼓膜只有幾公分，卻能讓我們感覺樂器來自前方五公尺外。這依賴於<b>HRTF (Head-Related Transfer Function)</b> 與音場頻響調校。</p>
-
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">關鍵調音點：1kHz - 3kHz 的漫射場對齊</h3>
-                    <p class="mb-4">漫射場 (Diffuse Field) 曲線平滑度與 10kHz 以上高頻空氣感的延伸，直接決定了音場的透明度與樂器定位距離感。</p>
+                    <p class="mb-4">專用 DAP 播放器擁有獨立解碼晶片與雙時鐘晶振，能提供比手機小尾巴更乾淨的背景與深邃音場。</p>
                 `
             },
             {
                 id: 'art-5',
-                categoryKey: 'IEM',
-                categoryLabel: '入耳式 (IEM)',
-                tagClass: 'bg-tagPurple-bg text-tagPurple-text dark:bg-tagPurple-darkBg dark:text-tagPurple-darkText',
-                title: '2026 入門音場開闊 IEM 推薦：5款3000元內空間感神器，古典樂與現場錄音愛好者必聽',
-                excerpt: '想在 3000 元內找到音場開闊的入耳式耳機？我們實測了 Aria 2、NA2 等 5 款具備優秀腔體洩壓與高頻延伸的空間感神器...',
-                date: '2026/10/11',
-                actionText: '前往圍觀 →',
-                actionClass: 'text-goblin-600 dark:text-goblin-400',
-                image: 'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?q=80&w=800&auto=format&fit=crop',
+                categoryKey: 'Knowledge',
+                categoryLabel: '⚡ 聲學知識',
+                tagClass: 'bg-tagOrange-bg text-tagOrange-text dark:bg-tagOrange-darkBg dark:text-tagOrange-darkText',
+                title: '桌面走線整理教學（發燒友篇）：徹底消滅底噪與迴圈雜音',
+                excerpt: '交流電源線、USB 數位訊號線與 3.5mm/XLR 類比訊號線平行產生的感應電磁雜音該如何消除？手把手教你建立乾淨接地環境...',
+                date: '2026/10/01',
+                image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=800&auto=format&fit=crop',
+                popularRank: 5,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">平價也能聽交響樂！5 款小預算高音場 IEM 評測</h2>
-                    <p class="mb-4">透過金屬前腔體、背腔透氣孔技術，現在即使是 3,000 元內耳機也能獲得驚人的空間堂音感與縱深解像力。</p>
+                    <p class="mb-4">許多燒友發現音響或耳擴發出「滋滋」底噪，其實不是設備壞掉，而是產生了<b>地迴圈（Ground Loop）</b>。本篇 SOP 帶你分類電源與訊號線材。</p>
                 `
             },
             {
                 id: 'art-6',
                 categoryKey: 'Knowledge',
-                categoryLabel: '⚡ 知識庫',
+                categoryLabel: '⚡ 聲學知識',
                 tagClass: 'bg-tagOrange-bg text-tagOrange-text dark:bg-tagOrange-darkBg dark:text-tagOrange-darkText',
-                title: '怎樣的調音才能呈現「電影感的大動態」？解析動態範圍與微動態表現的聲學原理',
-                excerpt: '明明頻響曲線很漂亮，聽交響樂卻覺得「很平」？這篇 Wiki 拆解動態範圍與微動態的聲學原理——訊噪比、驅動單元控制力與瞬態響應...',
-                date: '2026/10/10',
-                actionText: '快速了解 →',
-                actionClass: 'text-orange-600 dark:text-orange-400 font-bold',
-                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop',
+                title: '耳機清潔與保養完整指南：延長濾網與耳罩壽命的禁忌防潮法',
+                excerpt: 'IEM 綠垢防範、TWS 充電金屬觸點氧化處理、真皮與蛋白質皮耳罩防龜裂技巧全解析...',
+                date: '2026/09/25',
+                image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop',
+                popularRank: 0,
                 content: `
-                    <h2 class="text-2xl font-black text-slate-900 dark:text-white mb-4">什麼是宏觀動態 (Macro Dynamic) 與微動態 (Micro Dynamic)？</h2>
-                    <p class="mb-4">宏觀動態指的是最輕微細語到最龐大爆發之間的能量差；微動態則是琴弦震動餘韻的細微起伏。只有單元震膜輕薄且強磁力的系統才能完美還原。</p>
+                    <p class="mb-4">耳垢堵塞耳機濾網是導致單邊聲音變小最常見的原因。切勿使用高濃度酒精直接噴洗動圈單元膜片！</p>
                 `
             }
         ];
 
         // State variables
-        let activeCategory = 'all';
+        let activeFilterCategory = 'all';
         let currentSearchQuery = '';
 
         // DOM elements
+        const homeView = document.getElementById('homeView');
+        const articleDetailView = document.getElementById('articleDetailView');
         const articlesGrid = document.getElementById('articlesGrid');
         const filterStatusBanner = document.getElementById('filterStatusBanner');
         const activeCategoryText = document.getElementById('activeCategoryText');
+        const popularPostsContainer = document.getElementById('popularPostsContainer');
         const searchInput = document.getElementById('searchInput');
         const searchBox = document.getElementById('searchBox');
         const btnToggleSearch = document.getElementById('btnToggleSearch');
         const btnThemeToggle = document.getElementById('btnThemeToggle');
         const themeIcon = document.getElementById('themeIcon');
 
-        // Modal elements
-        const articleModal = document.getElementById('articleModal');
-        const articleModalContainer = document.getElementById('articleModalContainer');
-        const btnCloseModal = document.getElementById('btnCloseModal');
-        const modalCategoryTag = document.getElementById('modalCategoryTag');
-        const modalDate = document.getElementById('modalDate');
-        const modalArticleBody = document.getElementById('modalArticleBody');
+        // Detail Page DOM
+        const detailTitle = document.getElementById('detailTitle');
+        const detailSummary = document.getElementById('detailSummary');
+        const detailCategoryBadge = document.getElementById('detailCategoryBadge');
+        const detailCoverImage = document.getElementById('detailCoverImage');
+        const detailArticleContent = document.getElementById('detailArticleContent');
+        const detailArticleMeta = document.getElementById('detailArticleMeta');
+        const tocContainer = document.getElementById('tocContainer');
+        const detailRelatedContainer = document.getElementById('detailRelatedContainer');
 
-        // INITIALIZATION
+        // INIT
         document.addEventListener('DOMContentLoaded', () => {
             renderArticles();
+            renderPopularPosts();
             initTheme();
         });
 
-        // RENDER ARTICLES
+        // VIEW SWITCHERS
+        function showHomeView() {
+            homeView.classList.remove('hidden');
+            articleDetailView.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openArticleDetail(articleId) {
+            const art = articles.find(a => a.id === articleId);
+            if (!art) return;
+
+            detailTitle.textContent = art.title;
+            detailSummary.textContent = art.excerpt;
+            detailCategoryBadge.textContent = art.categoryLabel;
+            detailCategoryBadge.className = `px-2.5 py-0.5 rounded-full ${art.tagClass} text-xs font-bold`;
+            detailCoverImage.src = art.image;
+            detailArticleContent.innerHTML = art.content;
+            detailArticleMeta.textContent = `發布於 ${art.date}`;
+
+            // Build Table of Contents (TOC)
+            tocContainer.innerHTML = '';
+            const headings = detailArticleContent.querySelectorAll('h3');
+            if (headings.length > 0) {
+                headings.forEach((h3, idx) => {
+                    const id = h3.id || `sec-${idx+1}`;
+                    h3.id = id;
+                    const a = document.createElement('a');
+                    a.href = `#${id}`;
+                    a.className = 'block py-1 hover:text-goblin-600 dark:hover:text-goblin-400 border-l-2 border-transparent hover:border-goblin-500 pl-2 transition-colors';
+                    a.textContent = h3.textContent.trim();
+                    tocContainer.appendChild(a);
+                });
+            } else {
+                tocContainer.innerHTML = '<span class="text-slate-400">本篇無多層級小標題</span>';
+            }
+
+            // Build Related Posts (exclude current)
+            detailRelatedContainer.innerHTML = '';
+            const related = articles.filter(a => a.id !== art.id).slice(0, 3);
+            related.forEach(rel => {
+                const item = document.createElement('div');
+                item.className = 'p-3 rounded-2xl bg-slate-50 dark:bg-slate-700/40 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors group';
+                item.onclick = () => openArticleDetail(rel.id);
+                item.innerHTML = `
+                    <span class="text-[10px] font-bold text-goblin-600 dark:text-goblin-400">${rel.categoryLabel}</span>
+                    <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-500 line-clamp-2 mt-0.5">${rel.title}</h4>
+                `;
+                detailRelatedContainer.appendChild(item);
+            });
+
+            homeView.classList.add('hidden');
+            articleDetailView.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // RENDER HOMEPAGE ARTICLES
         function renderArticles() {
             articlesGrid.innerHTML = '';
 
             const filtered = articles.filter(art => {
-                const matchCat = (activeCategory === 'all') || (art.categoryKey === activeCategory);
+                const matchCat = (activeFilterCategory === 'all') || (art.categoryKey === activeFilterCategory);
                 const matchSearch = art.title.toLowerCase().includes(currentSearchQuery.toLowerCase()) || 
                                     art.excerpt.toLowerCase().includes(currentSearchQuery.toLowerCase());
                 return matchCat && matchSearch;
@@ -593,7 +705,7 @@
                 articlesGrid.innerHTML = `
                     <div class="col-span-full py-12 text-center bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700">
                         <i class="fa-solid fa-ghost text-4xl text-goblin-500 mb-3"></i>
-                        <p class="font-bold text-slate-700 dark:text-slate-300">沒有找到符合的文章，換個關鍵字試試吧！</p>
+                        <p class="font-bold text-slate-700 dark:text-slate-300 text-sm">找不到符合條件的文章</p>
                     </div>
                 `;
                 return;
@@ -602,82 +714,82 @@
             filtered.forEach(art => {
                 const card = document.createElement('div');
                 card.className = 'card-hover bg-white dark:bg-slate-800 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm cursor-pointer flex flex-col justify-between group';
-                card.onclick = () => openArticleModal(art.id);
+                card.onclick = () => openArticleDetail(art.id);
 
                 card.innerHTML = `
                     <div>
-                        <!-- Cover Image -->
-                        <div class="relative h-48 sm:h-52 overflow-hidden bg-slate-900">
+                        <div class="relative h-44 sm:h-48 overflow-hidden bg-slate-900">
                             <img src="${art.image}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
                         </div>
-
-                        <div class="p-5 sm:p-6 space-y-3">
-                            <!-- Category Tag -->
-                            <div>
-                                <span class="px-2.5 py-0.5 rounded-full ${art.tagClass} text-[11px] font-bold">
-                                    ${art.categoryLabel}
-                                </span>
-                            </div>
-
-                            <!-- Title -->
-                            <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-goblin-600 dark:group-hover:text-goblin-400 transition-colors leading-snug line-clamp-2">
+                        <div class="p-5 space-y-2.5">
+                            <span class="px-2.5 py-0.5 rounded-full ${art.tagClass} text-[11px] font-bold">
+                                ${art.categoryLabel}
+                            </span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-goblin-600 transition-colors leading-snug line-clamp-2">
                                 ${art.title}
                             </h3>
-
-                            <!-- Excerpt -->
                             <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                                 ${art.excerpt}
                             </p>
                         </div>
                     </div>
-
-                    <!-- Footer Row -->
-                    <div class="px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 font-medium border-t border-slate-100 dark:border-slate-700/60 mt-2">
-                        <span><i class="fa-regular fa-calendar mr-1.5"></i>${art.date}</span>
-                        <span class="${art.actionClass} text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                            ${art.actionText}
+                    <div class="px-5 pb-4 pt-2 flex items-center justify-between text-[11px] text-slate-400 font-medium border-t border-slate-100 dark:border-slate-700/60 mt-2">
+                        <span><i class="fa-regular fa-calendar mr-1"></i>${art.date}</span>
+                        <span class="text-goblin-600 dark:text-goblin-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            前往閱讀 <i class="fa-solid fa-arrow-right text-[9px]"></i>
                         </span>
                     </div>
                 `;
-
                 articlesGrid.appendChild(card);
             });
         }
 
-        // CATEGORY FILTERING LOGIC
-        window.filterByCategory = function(categoryKey) {
-            activeCategory = categoryKey;
+        // RENDER SIDEBAR POPULAR POSTS
+        function renderPopularPosts() {
+            popularPostsContainer.innerHTML = '';
+            const populars = [...articles].filter(a => a.popularRank > 0).sort((a,b) => a.popularRank - b.popularRank);
             
-            if (activeCategory === 'all') {
-                filterStatusBanner.classList.add('hidden');
-            } else {
-                filterStatusBanner.classList.remove('hidden');
-                activeCategoryText.textContent = categoryKey;
-            }
+            populars.forEach(art => {
+                const item = document.createElement('div');
+                item.className = 'flex items-start gap-3 cursor-pointer group py-1.5 border-b border-slate-100/60 dark:border-slate-700/40 last:border-none';
+                item.onclick = () => openArticleDetail(art.id);
 
+                item.innerHTML = `
+                    <span class="text-xl font-black text-amber-500 italic w-4 flex-shrink-0 text-center">${art.popularRank}</span>
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-slate-400">${art.categoryLabel}</span>
+                        <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-goblin-600 transition-colors line-clamp-2 leading-snug">${art.title}</h4>
+                    </div>
+                `;
+                popularPostsContainer.appendChild(item);
+            });
+        }
+
+        // FILTER FUNCTIONS
+        window.filterByCategory = function(categoryKey) {
+            activeFilterCategory = categoryKey;
+            showHomeView();
+            filterStatusBanner.classList.remove('hidden');
+            activeCategoryText.textContent = categoryKey;
             renderArticles();
+        };
 
-            // Smooth scroll down to latest section
-            const latestElem = document.getElementById('latest');
-            if (latestElem) {
-                latestElem.scrollIntoView({ behavior: 'smooth' });
-            }
+        window.filterByTag = function(tagKey) {
+            filterByCategory(tagKey);
         };
 
         window.resetFilter = function() {
-            activeCategory = 'all';
+            activeFilterCategory = 'all';
             currentSearchQuery = '';
             searchInput.value = '';
             filterStatusBanner.classList.add('hidden');
             renderArticles();
         };
 
-        // SEARCH INPUT TOGGLE & LOGIC
+        // SEARCH TOGGLE
         btnToggleSearch.addEventListener('click', () => {
             searchBox.classList.toggle('hidden');
-            if (!searchBox.classList.contains('hidden')) {
-                searchInput.focus();
-            }
+            if (!searchBox.classList.contains('hidden')) searchInput.focus();
         });
 
         searchInput.addEventListener('input', (e) => {
@@ -685,54 +797,7 @@
             renderArticles();
         });
 
-        // ARTICLE READER MODAL LOGIC
-        window.openArticleModal = function(articleId) {
-            const art = articles.find(a => a.id === articleId);
-            if (!art) return;
-
-            modalCategoryTag.textContent = art.categoryLabel;
-            modalCategoryTag.className = `px-2.5 py-0.5 rounded-full ${art.tagClass} text-xs font-bold`;
-            modalDate.textContent = art.date;
-
-            modalArticleBody.innerHTML = `
-                <div class="relative h-60 sm:h-72 rounded-2xl overflow-hidden mb-6">
-                    <img src="${art.image}" class="w-full h-full object-cover">
-                </div>
-                <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight mb-4">
-                    ${art.title}
-                </h1>
-                <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-200">
-                    ${art.content}
-                </div>
-            `;
-
-            articleModal.classList.remove('opacity-0', 'pointer-events-none');
-            articleModalContainer.classList.remove('scale-95');
-            articleModalContainer.classList.add('scale-100');
-        };
-
-        function closeModal() {
-            articleModal.classList.add('opacity-0', 'pointer-events-none');
-            articleModalContainer.classList.remove('scale-100');
-            articleModalContainer.classList.add('scale-95');
-        }
-
-        btnCloseModal.addEventListener('click', closeModal);
-        articleModal.addEventListener('click', (e) => {
-            if (e.target === articleModal) closeModal();
-        });
-
-        window.copyCurrentUrl = function() {
-            const temp = document.createElement('input');
-            temp.value = window.location.href;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-            alert('文章連結已成功複製！');
-        };
-
-        // DARK MODE TOGGLE LOGIC
+        // THEME LOGIC
         function initTheme() {
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
