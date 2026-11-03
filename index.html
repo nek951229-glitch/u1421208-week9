@@ -32,7 +32,7 @@
       </div>
       <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
         <a href="#" onclick="showArticleList()" class="hover:text-emerald-600 transition">首頁知識庫</a>
-        <a href="https://github.com/nek951229-glitch/nuu-ai-u1421208" target="_blank" class="hover:text-emerald-600 transition">GitHub 專案</a>
+        <a href="https://github.com/nek951229-glitch/u1421208-week9" target="_blank" class="hover:text-emerald-600 transition">GitHub 專案</a>
       </nav>
     </div>
   </header>
@@ -82,9 +82,9 @@
   </footer>
 
   <script>
-    // GitHub 儲存庫設定
+    // 正確的 GitHub 儲存庫名稱設定
     const REPO_OWNER = 'nek951229-glitch';
-    const REPO_NAME = 'nuu-ai-u1421208';
+    const REPO_NAME = 'u1421208-week9'; // 已修復為正確的專案名稱
     const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/posts`;
 
     // 頁面載入時自動執行目錄掃描
@@ -97,7 +97,7 @@
 
       try {
         const res = await fetch(API_URL);
-        if (!res.ok) throw new Error('目錄抓取失敗 (請確認 posts/ 資料夾已推送到 GitHub)');
+        if (!res.ok) throw new Error('目錄抓取失敗 (請確認 API_URL 專案名稱是否正確)');
         const files = await res.json();
 
         // 過濾出所有 .md 檔案
@@ -113,7 +113,7 @@
         // 逐一解析每個 .md 檔案的標題與摘要
         for (const file of mdFiles) {
           try {
-            const rawRes = await fetch(file.download_url || file.path);
+            const rawRes = await fetch(file.path);
             const text = await rawRes.text();
 
             // 提取第一列 `# 標題`
@@ -124,7 +124,7 @@
             const dateMatch = text.match(/-\s+\*\*發布日期\*\*：(.+)/);
             const date = dateMatch ? dateMatch[1] : '近期發布';
 
-            // 提取第一個非標題的段落作為預覽摘要
+            // 提取第一個非標題段落作為摘要
             const lines = text.split('\n').filter(l => l.trim() !== '' && !l.startsWith('#') && !l.startsWith('-') && !l.startsWith('|'));
             const summary = lines.length > 0 ? lines[0].replace(/[*#`]/g, '').trim() : '點擊閱讀完整評測文章內文...';
 
@@ -154,7 +154,6 @@
         cardsGrid.innerHTML = `<div class="col-span-3 p-6 bg-red-50 text-red-600 rounded-xl border border-red-200 text-center">
           <h3 class="font-bold text-lg mb-1">自動建立卡片失敗</h3>
           <p class="text-sm mb-2">${err.message}</p>
-          <p class="text-xs text-slate-500">請確認您的 GitHub 倉庫 posts/ 資料夾內是否有 .md 檔案。</p>
         </div>`;
       }
     }
